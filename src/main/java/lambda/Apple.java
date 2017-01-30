@@ -6,12 +6,8 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-/**
- * Created by coupang on 2017. 1. 21..
- */
 @Data
 @AllArgsConstructor
 public class Apple {
@@ -21,6 +17,10 @@ public class Apple {
 
     public Apple(String color) {
         this.color = color;
+    }
+
+    public Apple(int height) {
+        this.height = height;
     }
 
     public static List<Apple> filterGreenApples(List<Apple> inventory) {
@@ -51,7 +51,7 @@ public class Apple {
 
     public static void main(String[] args) {
         List<Apple> inventory = Arrays.asList(new Apple("green"), new Apple("blue"));
-        List<Apple> result = filterApples(inventory, (Apple apple) -> "blue".equals(apple.getColor()));
+        List<Apple> result = filterApples(inventory, apple -> "blue".equals(apple.getColor()));
 
         assert result.size() == 1;
         assert result.get(0).getColor().equals("blue");

@@ -1,13 +1,10 @@
 package lambda
 
 import spock.lang.Specification
-import lambda.ApplePredicate
+
 import static lambda.Apple.filterApples
 
 
-/**
- * Created by coupang on 2017. 1. 21..
- */
 class AppleTest extends Specification {
 
     def inventory = [new Apple("green"), new Apple("blue")]

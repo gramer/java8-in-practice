@@ -1,15 +1,40 @@
 group 'com.gramer'
 version '1.0-SNAPSHOT'
 
-apply plugin: 'java'
-apply plugin: "groovy"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M3'
+    }
+}
 
 repositories {
     mavenCentral()
 }
 
+ext.junit4Version        = '4.12'
+ext.junitVintageVersion  = '4.12.0-M3'
+ext.junitPlatformVersion = '1.0.0-M3'
+ext.junitJupiterVersion  = '5.0.0-M3'
+ext.log4jVersion         = '2.6.2'
+
+apply plugin: 'java'
+apply plugin: "groovy"
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    // JUnit Jupiter API and TestEngine implementation
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+
+    // If you also want to support JUnit 3 and JUnit 4 tests
+    testCompile("junit:junit:${junit4Version}")
+    testRuntime("org.junit.vintage:junit-vintage-engine:${junitVintageVersion}")
+
     testCompile "org.codehaus.groovy:groovy-all:2.4.2"
 
     compile 'org.projectlombok:lombok:1.14.8'
